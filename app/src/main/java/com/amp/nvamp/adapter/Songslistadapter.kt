@@ -1,6 +1,7 @@
 package com.amp.nvamp.adapter
 
 import android.content.DialogInterface
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.MenuInflater
 import android.view.MenuItem
@@ -43,6 +44,8 @@ class Songslistadapter(
     val dynamicChoice: Set<String> = playlistmap.keys
     var newmediaitem = mediaitems
 
+    private var selectedPosition = -1
+
     inner class MyViewHolder(view: View) : RecyclerView.ViewHolder(view) {
         val songTitle: TextView = view.findViewById(R.id.title)
         val songartist: TextView = view.findViewById(R.id.artist)
@@ -68,6 +71,7 @@ class Songslistadapter(
         holder: MyViewHolder,
         position: Int,
     ) {
+
         holder.songTitle.text = mediaitems[position].mediaMetadata.title
         holder.songartist.text = mediaitems[position].mediaMetadata.artist
 

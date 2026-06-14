@@ -32,7 +32,7 @@ class Playlistadapter(
     }
 
     override fun getItemCount(): Int {
-        return playlistitems.size
+        return playlistitems.values.size
     }
 
     override fun onBindViewHolder(
@@ -42,7 +42,7 @@ class Playlistadapter(
         val foldername = mutableListOf(playlistitems.keys)
         var splitname = foldername[0].elementAt(position).substring(0, foldername[0].elementAt(position).length - 1).split("/")
         holder.title.text = foldername[0].elementAt(position)
-        holder.nooftracks.text = playlistitems.get(foldername[0].elementAt(position))?.size.toString() + " Items"
+        holder.nooftracks.text = foldername[0].size.toString() + " Items"
 
         val bundle =
             Bundle().apply {

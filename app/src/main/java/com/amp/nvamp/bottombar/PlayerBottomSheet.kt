@@ -152,13 +152,14 @@ class PlayerBottomSheet(context: Context, attribute: AttributeSet) :
 
                     slider.value = safePosition
                 }
-                ahandler.postDelayed(this, 100)
+                ahandler.postDelayed(this, 250)
             }
         }
 
     var sliderTouchListener =
         object : Slider.OnSliderTouchListener {
             override fun onStartTrackingTouch(slider: Slider) {
+                ahandler.removeCallbacks(seekbarplayer)
             }
 
             override fun onStopTrackingTouch(slider: Slider) {
@@ -173,13 +174,6 @@ class PlayerBottomSheet(context: Context, attribute: AttributeSet) :
 
         bottomSheet = PlayerBottomSheetBehaviour.from(this)
 
-//        mediaController = MediaController.Builder(
-//            NvampApplication.context,
-//            SessionToken(
-//                NvampApplication.context,
-//                ComponentName(NvampApplication.context, PlaybackService::class.java)
-//            ),
-//        ).buildAsync()
 
         mediaController = playerViewModel.controllerFuture
 
@@ -187,15 +181,6 @@ class PlayerBottomSheet(context: Context, attribute: AttributeSet) :
             {
                 if (mediaController.isDone) {
                     controller = mediaController.get()
-
-                    // controller.setMediaItems(mediaitems, playerViewModel.getlastplayedpos(),playerViewModel.getLastPlayedms().toLong())
-
-//                    val lastIndex = playerViewModel.getlastplayedpos()
-//                    val lastMs = playerViewModel.getLastPlayedms()
-
-//                    controller.setMediaItems(mediaitems)
-//                    controller.prepare()
-//                    controller.seekTo(lastIndex, lastMs.toLong())
 
                     if (!isPlayerListenerAdded) {
                         isPlayerListenerAdded = true

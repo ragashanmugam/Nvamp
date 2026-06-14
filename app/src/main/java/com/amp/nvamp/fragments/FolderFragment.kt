@@ -45,6 +45,7 @@ class FolderFragment : Fragment() {
         folderListView = folderbinding?.foldersongrecyclerview
         val layoutManager = LinearLayoutManager(requireContext())
         folderListView?.layoutManager = layoutManager
+        deviceMusicList.toSortedMap()
         adapter = Folderlistadapter(deviceMusicList, playerViewModel.controllerFuture)
         folderListView?.adapter = adapter
 
